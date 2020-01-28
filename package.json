@@ -1,0 +1,20 @@
+{
+  "name": "webdevrest",
+  "version": "1.0.0",
+  "description": "Build A REST API With Node.js, Express, & MongoDB with WebDev Simplified\r https://www.youtube.com/watch?v=fgTGADljAeg",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.10"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
+  }
+}
