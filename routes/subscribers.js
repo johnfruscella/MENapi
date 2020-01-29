@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 // Getting One subsciber
 router.get('/:id', getSubscriber, (req, res) => {
-    res.send(res.subscriber.name);
+    res.json(res.subscriber)
 
 });
 // Creating a subscriber
@@ -30,12 +30,28 @@ router.post('/', async (req, res) => {
     }
 });
 // Updating a subscriber. using patch instead of put so a change only updates the specific info changed not whole thing
-router.patch('/:id',getSubscriber, (req, res) => {
-
+router.patch('/:id', getSubscriber, async (req, res) => {
+    if (req.body.name != null) {
+        res.subscriber.name = req.body.name
+    }
+    if (req.body.subscribedToChannel != null) {
+        res.subscriber.subscribedToChannel = req.body.subscribedToChannel
+    }
+    try {
+        const updatedSubscriber = await res.subscriber.save();
+        res.json(updatedSubscriber);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 });
 // Deleting a subscriber
-router.delete('/:id',getSubscriber, (req, res) => {
-
+router.delete('/:id', getSubscriber, async (req, res) => {
+    try {
+        await res.subscriber.remove();
+        res.json({ message: `Deleted Subscriber` });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 async function getSubscriber(req, res, next) {

@@ -2,4 +2,26 @@ GET http://localhost:3000/subscribers
 
 
 ###
-Get http://localhost:3000/subscribers/12
+Get http://localhost:3000/subscribers/5e30d94cdb08bc69503a7750
+
+###
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Carl Jung",
+    "subscribedToChannel": "The best website"
+}
+
+
+###
+DELETE http://localhost:3000/subscribers/5e30ccb53e09f031a844a7eb
+
+
+###
+PATCH http://localhost:3000/subscribers/5e30ccb53e09f031a844a7eb
+Content-Type: application/json
+
+{
+    "name": "New Carl Jung"
+}
